@@ -33,7 +33,7 @@ app.listen( port, ( req, res )=>{
 });
 
 //test
-app.get('/test', (req,res)=>{
+app.get('/songs', (req,res)=>{
     console.log('test GET HIT');
     const queryString = `SELECT * FROM songs;`;
 
@@ -43,4 +43,15 @@ app.get('/test', (req,res)=>{
     }).catch(( err )=>{
         console.log('error', err);
     });
+});
+
+app.post('/songs', (req,res) => {
+    console.log('in song POST', req.body);
+
+    const queryString = 'INSERT INTO song (artist, track, rank, published) VALUE ($1, $2, $3, $4);';
+    pool.query(queryString, [ req.body.artist, req.body.track, req.body.rank, req.body.published]).then(()=>{
+            res.send('added');
+        });
+
+    res.send('chirp');
 });
