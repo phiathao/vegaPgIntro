@@ -1,4 +1,4 @@
-CREATE DATABASE "music_library";
+CREATE DATABASE "storm";
 
 CREATE TABLE "songs" (
   "id" serial primary key,
