@@ -3,9 +3,9 @@ $( document ).ready( readyNow );
 function addSong(){
     const objectToSend = {
         artist: $('#artistIn').val(),
-        artist: $('#publishedIn').val(),
-        artist: $('#rankIn').val(),
-        artist: $('#trackIn').val(),
+        published: $('#publishedIn').val(),
+        rank: $('#rankIn').val(),
+        track: $('#trackIn').val()
     }
     $.ajax({
         method: 'POST',
@@ -13,6 +13,7 @@ function addSong(){
         data: objectToSend
     }).then(function(response){
         console.log('back from POST', response);
+        getSong();
     }).catch(function(err){
         console.log('error with POST', err);
     })
@@ -31,4 +32,5 @@ function getSong(){
 function readyNow(){
     console.log( 'JQ' );
     $('#addSongButton').on('click', addSong);
+    getSong();
 } // end readynow
