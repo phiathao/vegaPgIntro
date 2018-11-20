@@ -49,7 +49,7 @@ app.post('/songs', (req, res) => {
     console.log('in songs POST', req.body);
 
     const queryString = `INSERT INTO songs (artist, track, rank, published) 
-        VALUE ($1, $2, $3, $4);`;
+        VALUES ($1, $2, $3, $4);`;
     pool.query(queryString, [req.body.artist, req.body.track, req.body.rank, req.body.published]).then(() => {
         res.sendStatus( 201 );
     }).catch((err)=>{
